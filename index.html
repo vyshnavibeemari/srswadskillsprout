@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSprout | LearnLoop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <section id="authPage" class="auth-page">
+        <div class="auth-decoration decoration-one"></div>
+        <div class="auth-decoration decoration-two"></div>
+
+        <div class="auth-card">
+            <div class="brand-logo">🌱</div>
+            <h1>SkillSprout</h1>
+            <p class="subtitle">Grow your skills. Shape your future.</p>
+
+            <div class="auth-tabs">
+                <button id="loginTab" class="active" onclick="showAuth('login')">Login</button>
+                <button id="registerTab" onclick="showAuth('register')">Register</button>
+            </div>
+
+            <form id="authForm">
+                <div id="nameField" class="form-field hidden">
+                    <label>Full Name</label>
+                    <input type="text" id="studentName" placeholder="Enter your name">
+                </div>
+
+                <div class="form-field">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+
+                <button class="primary-btn full-btn" type="submit" id="authSubmit">
+                    Login to SkillSprout →
+                </button>
+            </form>
+
+            <p class="auth-note">Your learning journey starts here ✨</p>
+        </div>
+    </section>
+
+    <!-- MAIN APPLICATION -->
+    <div id="appPage" class="app hidden">
+
+        <aside class="sidebar">
+            <div class="side-brand">
+                <span>🌱</span>
+                <div>
+                    <h2>SkillSprout</h2>
+                    <small>LearnLoop</small>
+                </div>
+            </div>
+
+            <div class="side-profile">
+                <div class="avatar" id="sideAvatar">S</div>
+                <div>
+                    <strong id="sideName">Student</strong>
+                    <small>Student Account</small>
+                </div>
+            </div>
+
+            <nav>
+                <button class="nav-link active" data-page="dashboard">🏠 Dashboard</button>
+                <button class="nav-link" data-page="intake">📝 Student Profile</button>
+                <button class="nav-link" data-page="roadmap">🗺️ Learning Roadmap</button>
+                <button class="nav-link" data-page="catalog">📚 Course Catalog</button>
+                <button class="nav-link" data-page="progress">📊 My Progress</button>
+                <button class="nav-link" data-page="graph">🔗 Prerequisite Graph</button>
+                <button class="nav-link" data-page="study">⏰ Study Planner</button>
+                <button class="nav-link" data-page="peers">👥 Study Groups</button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button id="soundToggle" class="nav-link">🔊 Sound: On</button>
+                <button id="logoutBtn" class="nav-link logout">↪ Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h2 id="pageHeading">Dashboard</h2>
+                    <p id="todayText">Your learning journey begins today.</p>
+                </div>
+                <div class="top-actions">
+                    <button id="notificationBtn" class="icon-btn">🔔</button>
+                    <div class="top-avatar" id="topAvatar">S</div>
+                </div>
+            </header>
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="page active">
+
+                <div class="welcome-banner">
+                    <div>
+                        <span class="welcome-tag">YOUR FUTURE STARTS HERE</span>
+                        <h1>Hello, <span id="welcomeName">Student</span>! 👋</h1>
+                        <p>Small steps today. Big achievements tomorrow.</p>
+                        <button class="light-btn" onclick="navigate('roadmap')">
+                            Explore My Roadmap →
+                        </button>
+                    </div>
+                    <div class="welcome-art">🚀</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card purple">
+                        <span>📚</span>
+                        <p>Enrolled Courses</p>
+                        <h2 id="enrolledCount">0</h2>
+                    </div>
+                    <div class="stat-card pink">
+                        <span>🎓</span>
+                        <p>Completed Credits</p>
+                        <h2 id="creditCount">0</h2>
+                    </div>
+                    <div class="stat-card blue">
+                        <span>🏆</span>
+                        <p>Overall Progress</p>
+                        <h2 id="overallCount">0%</h2>
+                    </div>
+                    <div class="stat-card orange">
+                        <span>🕒</span>
+                        <p>Weekly Study Hours</p>
+                        <h2 id="hoursCount">0h</h2>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Learning Progress</h3>
+                                <p>Keep growing every day.</p>
+                            </div>
+                            <span>🌟</span>
+                        </div>
+                        <div class="progress-center">
+                            <div class="progress-ring" id="dashboardRing">
+                                <div>
+                                    <strong id="dashboardPercent">0%</strong>
+                                    <small>Completed</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Your Learning Profile</h3>
+                                <p>Your academic information.</p>
+                            </div>
+                            <span>👩‍🎓</span>
+                        </div>
+                        <div class="profile-details" id="profileSummary">
+                            <p>Complete your student profile to generate your roadmap.</p>
+                        </div>
+                        <button class="outline-btn" onclick="navigate('intake')">
+                            Update Profile
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Continue Learning</h3>
+                            <p>Your currently enrolled courses.</p>
+                        </div>
+                        <button class="text-btn" onclick="navigate('catalog')">View Catalog →</button>
+                    </div>
+                    <div id="dashboardCourses" class="course-grid"></div>
+                </div>
+
+            </section>
+
+            <!-- STUDENT INTAKE -->
+            <section id="intake" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">📝</span>
+                    <h1>Student Diagnostic Intake</h1>
+                    <p>Tell us about yourself so we can prepare your personalized learning journey.</p>
+                </div>
+
+                <div class="panel form-panel">
+                    <form id="intakeForm" class="intake-grid">
+
+                        <div class="form-field">
+                            <label>Engineering Branch</label>
+                            <select id="branch" required>
+                                <option value="">Select Branch</option>
+                                <option value="CSE">Computer Science Engineering</option>
+                                <option value="CSE-DS">CSE - Data Science</option>
+                                <option value="CSE-AI">CSE - Artificial Intelligence</option>
+                                <option value="IT">Information Technology</option>
+                                <option value="ECE">Electronics and Communication</option>
+                                <option value="EEE">Electrical Engineering</option>
+                                <option value="MECH">Mechanical Engineering</option>
+                                <option value="CIVIL">Civil Engineering</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label>Current Semester</label>
+                            <select id="semester" required>
+                                <option value="">Select Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                                <option value="7">Semester 7</option>
+                                <option value="8">Semester 8</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label>Programming Experience</label>
+                            <select id="coding" required>
+                                <option value="">Select Experience</option>
+                                <option value="beginner">Beginner - No experience</option>
+                                <option value="basic">Basic - Know fundamentals</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label>Target Career Pathway</label>
+                            <select id="career" required>
+                                <option value="">Choose Career</option>
+                                <option value="Full-Stack Web">Full-Stack Web Development</option>
+                                <option value="AI & ML">Artificial Intelligence & Machine Learning</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Cybersecurity">Cybersecurity</option>
+                                <option value="Cloud Computing">Cloud Computing</option>
+                                <option value="Mobile Development">Mobile App Development</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field full-width">
+                            <label>What do you want to achieve?</label>
+                            <textarea id="goal" placeholder="Write a short description of your career goal..."></textarea>
+                        </div>
+
+                        <div class="full-width">
+                            <button class="primary-btn" type="submit">Generate My Learning Roadmap ✨</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ROADMAP -->
+            <section id="roadmap" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">🗺️</span>
+                    <h1>My Learning Roadmap</h1>
+                    <p>A personalized sequence of courses based on prerequisites and career goals.</p>
+                </div>
+                <div class="roadmap-info" id="roadmapInfo"></div>
+                <div id="roadmapContainer" class="roadmap-container"></div>
+            </section>
+
+            <!-- COURSE CATALOG -->
+            <section id="catalog" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">📚</span>
+                    <h1>Explore Course Catalog</h1>
+                    <p>Discover courses and enroll in unlocked learning opportunities.</p>
+                </div>
+
+                <div class="panel filter-panel">
+                    <input id="searchCourse" type="search" placeholder="🔍 Search code or course title...">
+
+                    <select id="creditFilter">
+                        <option value="">All Credits</option>
+                        <option value="2">2 Credits</option>
+                        <option value="3">3 Credits</option>
+                        <option value="4">4 Credits</option>
+                    </select>
+
+                    <select id="difficultyFilter">
+                        <option value="">All Difficulties</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+
+                    <button class="outline-btn" id="clearFilters">Clear Filters</button>
+                </div>
+
+                <p id="catalogCount" class="result-count"></p>
+                <div id="catalogGrid" class="course-grid"></div>
+            </section>
+
+            <!-- PROGRESS -->
+            <section id="progress" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">📊</span>
+                    <h1>My Academic Progress</h1>
+                    <p>Track completed courses, credits and learning milestones.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card purple">
+                        <span>🎯</span><p>Milestone Progress</p>
+                        <h2 id="progressPercent">0%</h2>
+                    </div>
+                    <div class="stat-card blue">
+                        <span>📖</span><p>Enrolled</p>
+                        <h2 id="progressEnrolled">0</h2>
+                    </div>
+                    <div class="stat-card pink">
+                        <span>🏅</span><p>Completed</p>
+                        <h2 id="progressCompleted">0</h2>
+                    </div>
+                    <div class="stat-card orange">
+                        <span>🎓</span><p>Credits Earned</p>
+                        <h2 id="progressCredits">0</h2>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Course Completion</h3>
+                    <p>Mark a module complete after finishing your course.</p>
+                    <div id="progressCourseList" class="progress-course-list"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Semester Credit Summary</h3>
+                    </div>
+                    <div id="semesterSummary"></div>
+                </div>
+            </section>
+
+            <!-- DEPENDENCY GRAPH -->
+            <section id="graph" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">🔗</span>
+                    <h1>Prerequisite Dependency Graph</h1>
+                    <p>Understand how completing one course unlocks the next course.</p>
+                </div>
+                <div class="panel graph-panel">
+                    <div class="graph-legend">
+                        <span>🟣 Locked</span>
+                        <span>🔵 Unlocked</span>
+                        <span>🟢 Completed</span>
+                    </div>
+                    <div id="dependencyGraph"></div>
+                </div>
+                <div class="panel">
+                    <h3>Dependency Validation</h3>
+                    <p id="cycleStatus">Checking course dependencies...</p>
+                </div>
+            </section>
+
+            <!-- STUDY PLANNER -->
+            <section id="study" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">⏰</span>
+                    <h1>Study Hours Estimator</h1>
+                    <p>Estimate your weekly workload based on enrolled course difficulty.</p>
+                </div>
+                <div class="panel study-panel">
+                    <div class="study-illustration">📅</div>
+                    <h2>Your Weekly Study Estimate</h2>
+                    <div class="big-number" id="studyHours">0 Hours</div>
+                    <p id="studyExplanation">Enroll in courses to calculate your study workload.</p>
+                    <div id="studyBreakdown"></div>
+                </div>
+            </section>
+
+            <!-- PEER GROUPS -->
+            <section id="peers" class="page">
+                <div class="section-intro">
+                    <span class="section-icon">👥</span>
+                    <h1>Peer Study Groups</h1>
+                    <p>Find suggested study partners following similar learning pathways.</p>
+                </div>
+                <div id="peerContainer" class="peer-grid"></div>
+            </section>
+
+            <footer>
+                <p>🌱 SkillSprout LearnLoop | Learn. Grow. Achieve.</p>
+                <small>Personalized learning for a brighter future.</small>
+            </footer>
+
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
